@@ -18,7 +18,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var secondTableView: UITableView!
     
     weak var delegate : SecondViewControllerDelegate?
-    var arrayOfNames = ["Bibbidy", "Bobbidy", "Boop",]
+    var arrayOfNames = ["Bibbidy", "Bobbidy", "Boop", "Genie"]
     
     
     override func viewDidLoad() {
