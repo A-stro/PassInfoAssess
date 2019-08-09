@@ -17,7 +17,15 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.firstLabel.isHidden = true
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("object"), object: nil, queue: .main) { [weak self] note in
+            guard let dict = note.userInfo, let name = dict["name"] as? String else { return }
+            self?.firstLabel.text = name
+            self?.firstLabel.isHidden = false
+            
+        }
     }
 
 
@@ -33,7 +41,20 @@ class FirstViewController: UIViewController {
             present(secondViewController, animated: true, completion: nil)
     }
     
-    
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "firstSegue" {
+            let thirdVC = segue.destination as! ThirdViewController
+            if let text = firstTextField.text {
+                thirdVC.arrayOfNames.append(text)
+            }
+        }
+    }
 }
 
+extension FirstViewController : SecondViewControllerDelegate{
+    func passNameBack(_ name: String) {
+        firstLabel.text = name
+        firstLabel.isHidden = false
+    }
+}

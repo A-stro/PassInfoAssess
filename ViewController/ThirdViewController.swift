@@ -28,3 +28,34 @@ class ThirdViewController: UIViewController {
     }
     
 }
+
+extension ThirdViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arrayOfNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThirdCollectionCell", for: indexPath) as! ThirdCollectionCell
+        
+        let name = arrayOfNames[indexPath.row]
+        cell.thirdLabel.text = name
+        
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 116, height: 115)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let name = arrayOfNames[indexPath.row]
+        let dict = ["name": name]
+        NotificationCenter.default.post(name: Notification.Name("object"), object: nil, userInfo: dict)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+}
