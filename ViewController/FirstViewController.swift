@@ -24,6 +24,7 @@ class FirstViewController: UIViewController {
     @IBAction func page2ButtonTapped(_ sender: UIButton) {
 
             let secondViewController = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+        
             if let text = firstTextField.text, !text.isEmpty {
             secondViewController.arrayOfNames = secondViewController.arrayOfNames + [text]
             

@@ -10,6 +10,11 @@ import UIKit
 
 class ThirdViewController: UIViewController {
 
+    @IBOutlet weak var thirdCollectionView: UICollectionView!
+    
+     var arrayOfNames = ["Bibbidy", "Bobbidy", "Boop",]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
